@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24.659" height="24.722" viewBox="0 0 24.659 24.722">
+  <g id="posts-icon" transform="translate(0 0.113)">
+    <path id="path" d="M5.426,22.813.5,24.109l1.3-5.056L20.335.644a.627.627,0,0,1,.907,0l2.722,2.722a.627.627,0,0,1,0,.907Z" transform="translate(0 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="line" x2="3.63" y2="3.63" transform="translate(18.909 2.071)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="path-2" data-name="path" d="M1.8,11.623V1.9h9.723" transform="translate(0.385 0.43)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="path-3" data-name="path" d="M19.023,10.4v9.723H9.3" transform="translate(2.608 2.949)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

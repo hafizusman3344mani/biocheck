@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="55.575" height="67.768" viewBox="0 0 55.575 67.768">
+  <g id="password-icon" transform="translate(0 2.018)">
+    <path id="path" d="M51.665,50.843H3.911A3.223,3.223,0,0,1,.5,47.432V9.911A3.223,3.223,0,0,1,3.911,6.5H51.665a3.223,3.223,0,0,1,3.411,3.411V47.432A3.223,3.223,0,0,1,51.665,50.843Z" transform="translate(0 14.406)" fill="none" stroke="#4c5264" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="path-2" data-name="path" d="M4.5,22.624V14.779C4.5,8.3,8.934,2.158,15.415.794A13.5,13.5,0,0,1,31.788,14.1v8.527" transform="translate(9.644 -2.012)" fill="none" stroke="#4c5264" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="path-3" data-name="path" d="M18.4,16a5.749,5.749,0,0,0-5.8-5.8A5.551,5.551,0,0,0,6.8,16a5.831,5.831,0,0,0,2.388,4.434V25.89A3.223,3.223,0,0,0,12.6,29.3,3.223,3.223,0,0,0,16.01,25.89V20.433A5.831,5.831,0,0,0,18.4,16Z" transform="translate(15.189 23.327)" fill="none" stroke="#4c5264" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

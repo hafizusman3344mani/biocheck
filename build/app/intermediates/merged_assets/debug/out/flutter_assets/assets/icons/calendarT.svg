@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="13.271" height="12.25" viewBox="0 0 13.271 12.25">
+  <g id="Group_2430" data-name="Group 2430" transform="translate(-26.425 -48.5)">
+    <path id="Icon_material-playlist-add-check" data-name="Icon material-playlist-add-check" d="M14.568,13.125l.666.666L12.129,16.9l-2-2,.666-.666,1.337,1.333Z" transform="translate(20.65 41.5)" fill="#32394b"/>
+    <g id="Icon_ionic-ios-calendar" data-name="Icon ionic-ios-calendar" transform="translate(23.05 44)">
+      <path id="Path_1341" data-name="Path 1341" d="M15.37,6.75H14.094v.766a.256.256,0,0,1-.255.255h-.51a.256.256,0,0,1-.255-.255V6.75H6.948v.766a.256.256,0,0,1-.255.255h-.51a.256.256,0,0,1-.255-.255V6.75H4.651A1.28,1.28,0,0,0,3.375,8.026V16.7a1.28,1.28,0,0,0,1.276,1.276H15.37A1.28,1.28,0,0,0,16.646,16.7V8.026A1.28,1.28,0,0,0,15.37,6.75Zm.255,9.57a.64.64,0,0,1-.638.638H5.034A.64.64,0,0,1,4.4,16.32V10.578a.256.256,0,0,1,.255-.255H15.37a.256.256,0,0,1,.255.255Z" transform="translate(0 -1.229)" fill="#32394b"/>
+      <path id="Path_1342" data-name="Path 1342" d="M10.021,4.755A.256.256,0,0,0,9.766,4.5h-.51A.256.256,0,0,0,9,4.755v.766h1.021Z" transform="translate(-3.073)" fill="#32394b"/>
+      <path id="Path_1343" data-name="Path 1343" d="M25.771,4.755a.256.256,0,0,0-.255-.255h-.51a.256.256,0,0,0-.255.255v.766h1.021Z" transform="translate(-11.677)" fill="#32394b"/>
+    </g>
+  </g>
+</svg>

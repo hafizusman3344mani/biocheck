@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2011404073/android.audioplayer.iml" filepath="$PROJECT_DIR$/.idea/modules/-2011404073/android.audioplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1014777934/android.connectivity.iml" filepath="$PROJECT_DIR$/.idea/modules/-1014777934/android.connectivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-311215456/android.conreality_pulse.iml" filepath="$PROJECT_DIR$/.idea/modules/-311215456/android.conreality_pulse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1627887064/android.countdown_flutter.iml" filepath="$PROJECT_DIR$/.idea/modules/-1627887064/android.countdown_flutter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1028942686/android.flutter_blue.iml" filepath="$PROJECT_DIR$/.idea/modules/1028942686/android.flutter_blue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1310027365/android.flutter_keyboard_visibility.iml" filepath="$PROJECT_DIR$/.idea/modules/1310027365/android.flutter_keyboard_visibility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1098645270/android.flutter_tts.iml" filepath="$PROJECT_DIR$/.idea/modules/-1098645270/android.flutter_tts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-495815028/android.keyboard_visibility.iml" filepath="$PROJECT_DIR$/.idea/modules/-495815028/android.keyboard_visibility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-570082507/android.location.iml" filepath="$PROJECT_DIR$/.idea/modules/-570082507/android.location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1863573268/android.path_provider.iml" filepath="$PROJECT_DIR$/.idea/modules/-1863573268/android.path_provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/30173822/android.permission_handler.iml" filepath="$PROJECT_DIR$/.idea/modules/30173822/android.permission_handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1953175200/android.shared_preferences.iml" filepath="$PROJECT_DIR$/.idea/modules/-1953175200/android.shared_preferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-325052613/android.sqflite.iml" filepath="$PROJECT_DIR$/.idea/modules/-325052613/android.sqflite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-296398050/android.video_player.iml" filepath="$PROJECT_DIR$/.idea/modules/-296398050/android.video_player.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/902241461/android.webview_flutter.iml" filepath="$PROJECT_DIR$/.idea/modules/902241461/android.webview_flutter.iml" />
+    </modules>
+  </component>
+</project>

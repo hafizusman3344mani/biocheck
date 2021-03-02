@@ -1,0 +1,10 @@
+<svg id="ic_heart_filled" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54.423" height="54.422" viewBox="0 0 54.423 54.422">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_9" data-name="Rectangle 9" width="54.422" height="54.422" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_7" data-name="Group 7" clip-path="url(#clip-path)">
+    <path id="Path_1" data-name="Path 1" d="M142.6,157.367c-.08-4.7-3.89-8.879-8.594-8.879a8.451,8.451,0,0,0-6.7,3.513,8.453,8.453,0,0,0-6.7-3.513c-4.705,0-8.514,4.185-8.594,8.879H112c0,.029.006.055.006.084s-.006.042-.006.065c0,.132.032.231.038.358.421,11.965,15.147,16.871,15.147,16.871s14.942-4.9,15.385-16.852c.008-.133.043-.239.043-.377,0-.023-.006-.044-.006-.065s.006-.055.006-.084Z" transform="translate(-100.095 -132.705)" fill="#fff"/>
+  </g>
+</svg>

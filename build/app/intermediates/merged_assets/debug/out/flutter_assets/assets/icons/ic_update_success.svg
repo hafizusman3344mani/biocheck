@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66.149" height="74" viewBox="0 0 66.149 74">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#7ff7b4"/>
+      <stop offset="1" stop-color="#3dc27c"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2545" data-name="Group 2545" transform="translate(-154 -264)">
+    <path id="path" d="M5.6,16.791l7.666,7.666L31.07,6.9" transform="translate(168.9 285.6)" fill="none" stroke="#27ae60" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+    <g id="updated" transform="translate(154 264)">
+      <path id="Union_2" data-name="Union 2" d="M3722.415,3959.9a32.72,32.72,0,0,1-13.953-26.826c0-17.866,14.685-32.394,32.47-32.748v-3.529a.792.792,0,0,1,1.239-.653l8.582,5.869a.792.792,0,0,1,0,1.307l-8.582,5.87a.791.791,0,0,1-1.239-.653v-3.54c-15.211.352-27.8,12.789-27.8,28.078a28.056,28.056,0,0,0,11.95,22.992,2.316,2.316,0,0,1,.118,3.719l-.035.027a2.325,2.325,0,0,1-1.439.5A2.276,2.276,0,0,1,3722.415,3959.9Z" transform="translate(-3708.462 -3896)" fill="url(#linear-gradient)"/>
+      <path id="Union_3" data-name="Union 3" d="M3717.388,3960.169l-8.581-5.869a.793.793,0,0,1,0-1.308l8.581-5.869a.792.792,0,0,1,1.24.653v3.541c15.22-.341,27.8-12.781,27.8-28.078a28.052,28.052,0,0,0-11.951-22.992,2.316,2.316,0,0,1-.117-3.719l.034-.027a2.308,2.308,0,0,1,2.751-.087,32.717,32.717,0,0,1,13.952,26.825c0,17.874-14.672,32.406-32.469,32.749v3.528a.793.793,0,0,1-.795.794A.783.783,0,0,1,3717.388,3960.169Z" transform="translate(-3684.947 -3886.309)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

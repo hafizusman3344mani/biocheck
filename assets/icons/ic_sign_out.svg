@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="67.585" height="67.252" viewBox="0 0 67.585 67.252">
+  <g id="ic_sign_out" transform="translate(0.5 0.5)">
+    <path id="path" d="M38.094,16.48,22.113.5,5.8,16.48" transform="translate(11.845 -0.5)" fill="none" stroke="#4c5264" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <g id="path-2" data-name="path" transform="translate(0 11.985)">
+      <path id="path-3" data-name="path" d="M8.157,4.1A31.291,31.291,0,0,0,.5,25.074a33.292,33.292,0,0,0,66.585,0A31.291,31.291,0,0,0,59.428,4.1" transform="translate(-0.5 -4.1)" fill="none" stroke="#4c5264" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    </g>
+    <line id="line" y2="36.622" transform="translate(33.958)" fill="none" stroke="#4c5264" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>
