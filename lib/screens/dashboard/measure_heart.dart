@@ -11,6 +11,7 @@ import 'package:biocheck/common/utils/values.dart';
 import 'package:biocheck/common/utils/widget_attributes.dart';
 import 'package:biocheck/controllers/heart_rate_controller.dart';
 import 'package:biocheck/controllers/infrastructure/common/connection_controller.dart';
+import 'package:biocheck/db/db_values.dart';
 import 'package:biocheck/generated/l10n.dart';
 import 'package:biocheck/screens/measurements/rest_measure.dart';
 import 'package:biocheck/screens/popups/connectivity_change_popup.dart';
@@ -37,7 +38,9 @@ class _MeasureHeartClickState extends State<MeasureHeartClick> {
   bool enableButton = false;
   bool connection = false;
   bool location = false;
-  var colorsStart = AppColors.startButtonPopup;
+  var colorsStart = DBValues.instance.getUserEntity().IsDarkTheme
+      ? AppColors.welcomeButton
+      : AppColors.startButtonPopup;
   var next = false;
   var hrController = Get.find<HRController>();
 
@@ -77,124 +80,136 @@ class _MeasureHeartClickState extends State<MeasureHeartClick> {
             backgroundColor: Colors.transparent.withOpacity(0.65),
             body: Center(
               child: Container(
-                height: 595.0,
-                margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 25.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                child: !isStart
-                    ? AnimatedOpacity(
-                        duration: Duration(milliseconds: 4500),
-                        curve: Curves.easeOut,
-                        opacity: opacity,
-                        child: Stack(
-                          children: [
-                            Center(
-                                child: SvgPicture.asset(
-                                    GlobalResources.measureheartPath)),
-                            Positioned(
-                              bottom: 0.0,
-                              right: 0.0,
-                              left: 0.0,
-                              top: 300.0,
-                              child: GestureDetector(
-                                onTap: () async {
-                                  connection =
-                                      await ConnectivityPolar.CheckBluetooth;
-                                  location =
-                                      await ConnectivityPolar.CheckLocation;
-                                  if (!connection || !location) {
-                                    hrController.showNetworkChangePopup();
-                                  } else {
-                                    hrController.mType=Constants.REST;
+                  height: 595.0,
+                  margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 25.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                  child: AnimatedSwitcher(
+                    duration: Duration(seconds: 1),
+                    switchInCurve: Curves.easeIn,
+                    switchOutCurve: Curves.easeOut,
+                    child: !isStart
+                        ? AnimatedOpacity(
+                            duration: Duration(milliseconds: 4500),
+                            curve: Curves.easeOut,
+                            opacity: opacity,
+                            child: Stack(
+                              children: [
+                                Center(
+                                    child: SvgPicture.asset(
+                                        GlobalResources.measureheartPath)),
+                                Positioned(
+                                  bottom: 0.0,
+                                  right: 0.0,
+                                  left: 0.0,
+                                  top: 300.0,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      connection = await ConnectivityPolar
+                                          .CheckBluetooth;
+                                      location =
+                                          await ConnectivityPolar.CheckLocation;
+                                      if (!connection || !location) {
+                                        hrController.showNetworkChangePopup();
+                                      } else {
+                                        hrController.mType = Constants.REST;
 
+                                        hrController.connectToDevice();
 
-                                    hrController.connectToDevice();
+                                        startTimer();
 
-                                    startTimer();
-
-
-                                    setState(() {
-                                      buttonGradient =
-                                          WidgetProps.getAppGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: AppColors.welcomeButton,
-                                      );
-                                      widthGradient = 10.0;
-                                      Timer(Duration(milliseconds: 250), () {
                                         setState(() {
-                                          textCol = Colors.white;
-                                          opacity = 0.0;
+                                          buttonGradient =
+                                              WidgetProps.getAppGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: AppColors.welcomeButton,
+                                          );
+                                          widthGradient = 10.0;
+                                          Timer(Duration(milliseconds: 400),
+                                              () {
+                                            setState(() {
+                                              textCol = Colors.white;
+                                              opacity = 0.0;
+                                            });
+                                          });
+                                          Timer(Duration(milliseconds: 650),
+                                              () {
+                                            setState(() {
+                                              isStart = true;
+                                            });
+                                          });
+                                          Timer(Duration(milliseconds: 750),
+                                              () {
+                                            setState(() {
+                                              widthGradient =
+                                                  AppValue.screenWidth(context);
+                                            });
+                                          });
                                         });
-                                      });
-                                      Timer(Duration(milliseconds: 650), () {
-                                        setState(() {
-                                          isStart = true;
-                                        });
-                                      });
-                                      Timer(Duration(milliseconds: 750), () {
-                                        setState(() {
-                                          widthGradient =
-                                              AppValue.screenWidth(context);
-                                        });
-                                      });
-                                    });
-                                  }
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 0.0),
-                                  child: Stack(
-                                    alignment: AlignmentDirectional.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 0.0, horizontal: 20.0),
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional.centerStart,
-                                          child: AnimatedContainer(
-                                            decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.4),
-                                                    blurRadius: 15.0,
-                                                    offset: Offset(0.0, 2.75),
-                                                  )
-                                                ],
-                                                gradient: buttonGradient,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(5.0))),
-                                            duration:
-                                                Duration(milliseconds: 600),
-                                            width: widthGradient ??
-                                                AppValue.screenWidth(context),
-                                            height: AppValue.customButtonHeight,
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
+                                      }
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 0.0),
+                                      child: Stack(
                                         alignment: AlignmentDirectional.center,
-                                        child: Textview2(
-                                          title: 'Start',
-                                          color: textCol,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 18.0,
-                                          textAlign: TextAlign.center,
-                                          lineHeight: 1.4,
-                                        ),
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 0.0,
+                                                horizontal: 20.0),
+                                            child: Align(
+                                              alignment: AlignmentDirectional
+                                                  .centerStart,
+                                              child: AnimatedContainer(
+                                                decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey
+                                                            .withOpacity(0.4),
+                                                        blurRadius: 15.0,
+                                                        offset:
+                                                            Offset(0.0, 2.75),
+                                                      )
+                                                    ],
+                                                    gradient: buttonGradient,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5.0))),
+                                                duration:
+                                                    Duration(milliseconds: 600),
+                                                width: widthGradient ??
+                                                    AppValue.screenWidth(
+                                                        context),
+                                                height:
+                                                    AppValue.customButtonHeight,
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional.center,
+                                            child: Textview2(
+                                              title: 'Start',
+                                              color: textCol,
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 18.0,
+                                              textAlign: TextAlign.center,
+                                              lineHeight: 1.4,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )
-                    : startMeasuring(),
-              ),
+                          )
+                        : startMeasuring(),
+                  )),
             ),
           ),
         );
@@ -206,139 +221,131 @@ class _MeasureHeartClickState extends State<MeasureHeartClick> {
     return Container(
       // height: 595.0,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.bodyColorMode,
           borderRadius: BorderRadius.all(Radius.circular(5.0))),
-      child: FadeWidget(
-        curve: Curves.easeIn,
-        milisec: 800,
-        child: Stack(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Positioned(
-              top: 57.0,
-              right: 0.0,
-              left: 0.0,
-              child: Container(
-                margin: EdgeInsets.only(top: 35.0),
-                child: Textview(
-                    S.of(context).waitingRoomPopupTitle,
-                    24.0,
-                    FontWeight.w300,
-                    AppColors.dashboardTextColor,
-                    TextAlign.center),
+      child: Stack(
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Positioned(
+            top: 57.0,
+            right: 0.0,
+            left: 0.0,
+            child: Container(
+              margin: EdgeInsets.only(top: 35.0),
+              child: Textview(S.of(context).waitingRoomPopupTitle, 24.0,
+                  FontWeight.w300, AppColors.textColorMode, TextAlign.center),
+            ),
+          ),
+          Positioned(
+            top: 134.0,
+            right: 0.0,
+            left: 0.0,
+            child: Textview2(
+              title: S.of(context).waitingRoomPopupDesc,
+              color: AppColors.textColorMode,
+              fontWeight: FontWeight.w300,
+              fontSize: 16.0,
+              textAlign: TextAlign.center,
+              lineHeight: 1.4,
+            ),
+          ),
+          Positioned(
+            bottom: 0.0,
+            right: 0.0,
+            left: 0.0,
+            top: 300.0,
+            child: GestureDetector(
+              onTap: () {},
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: AnimatedContainer(
+                        decoration: BoxDecoration(
+                            gradient: buttonGradient,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0))),
+                        duration: Duration(seconds: 10),
+                        width: widthGradient ?? AppValue.screenWidth(context),
+                        height: AppValue.customButtonHeight,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.center,
+                    child: Textview2(
+                      title: S.of(context).waitingRoomPopupBtn1,
+                      color: textCol,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18.0,
+                      textAlign: TextAlign.center,
+                      lineHeight: 1.4,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Positioned(
-              top: 134.0,
-              right: 0.0,
-              left: 0.0,
-              child: Textview2(
-                title: S.of(context).waitingRoomPopupDesc,
-                color: AppColors.dashboardTextColor,
-                fontWeight: FontWeight.w300,
-                fontSize: 16.0,
-                textAlign: TextAlign.center,
-                lineHeight: 1.4,
-              ),
-            ),
-            Positioned(
-              bottom: 0.0,
-              right: 0.0,
-              left: 0.0,
-              top: 300.0,
-              child: GestureDetector(
-                onTap: () {},
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: InkWell(
+              onTap: () async {
+                if (enableButton) {
+                  connection = await ConnectivityPolar.CheckBluetooth;
+                  location = await ConnectivityPolar.CheckLocation;
+                  // if (!connection || !location) {
+                  //   hrController.showNetworkChangePopup();
+                  // } else {
+                  //  if (hrController.startMeasuring == 1) {
+                  next = true;
+                  Navigator.pushReplacement(context, RoutePage(
+                    builder: (context) {
+                      return RestMeasureent(S.of(context).measuring);
+                    },
+                  ));
+                  // } else {
+                  //   hrController.showConnectionChangePopup();
+                  // }
+                  // }
+                }
+              },
+              child: AnimatedContainer(
+                height: 45.0,
+                duration: Duration(milliseconds: 500),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(5.0),
+                      bottomRight: Radius.circular(5.0)),
+                  gradient: WidgetProps.getAppGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: colorsStart,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-                      child: Align(
-                        alignment: AlignmentDirectional.centerStart,
-                        child: AnimatedContainer(
-                          decoration: BoxDecoration(
-                              gradient: buttonGradient,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0))),
-                          duration: Duration(seconds: 10),
-                          width: widthGradient ?? AppValue.screenWidth(context),
-                          height: AppValue.customButtonHeight,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional.center,
-                      child: Textview2(
-                        title: S.of(context).waitingRoomPopupBtn1,
-                        color: textCol,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 18.0,
-                        textAlign: TextAlign.center,
-                        lineHeight: 1.4,
-                      ),
-                    ),
+                    Textview(
+                        S.of(context).waitingRoomPopupBtn2,
+                        18.0,
+                        FontWeight.w300,
+                        enableButton
+                            ? Colors.white
+                            : DBValues.instance.getUserEntity().IsDarkTheme
+                                ? Colors.white
+                                : AppColors.dashboardTextColor,
+                        TextAlign.center)
                   ],
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: InkWell(
-                onTap: () async {
-                  if (enableButton) {
-                    connection = await ConnectivityPolar.CheckBluetooth;
-                    location = await ConnectivityPolar.CheckLocation;
-                    // if (!connection || !location) {
-                    //   hrController.showNetworkChangePopup();
-                    // } else {
-                    //  if (hrController.startMeasuring == 1) {
-                        next = true;
-                        Navigator.pushReplacement(context, RoutePage(
-                          builder: (context) {
-                            return RestMeasureent(S.of(context).measuring);
-                          },
-                        ));
-                      // } else {
-                      //   hrController.showConnectionChangePopup();
-                      // }
-                   // }
-                  }
-                },
-                child: AnimatedContainer(
-                  height: 45.0,
-                  duration: Duration(milliseconds: 500),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(5.0),
-                        bottomRight: Radius.circular(5.0)),
-                    gradient: WidgetProps.getAppGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: colorsStart,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Textview(
-                          S.of(context).waitingRoomPopupBtn2,
-                          18.0,
-                          FontWeight.w300,
-                          enableButton
-                              ? Colors.white
-                              : AppColors.dashboardTextColor,
-                          TextAlign.center)
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-
-
 }

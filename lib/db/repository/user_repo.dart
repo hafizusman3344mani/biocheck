@@ -1,3 +1,4 @@
+import 'package:biocheck/common/utils/theme_color_mode.dart';
 import 'package:biocheck/controllers/heart_rate_controller.dart';
 import 'package:biocheck/db/dao/user_dao.dart';
 import 'package:biocheck/db/database/database_handler.dart';
@@ -5,6 +6,8 @@ import 'package:biocheck/db/entities/user_entity.dart';
 import 'package:biocheck/models/apimodels/authorization/authorization_response.dart';
 import 'package:biocheck/models/local/result.dart';
 import 'package:get/get.dart';
+
+import '../db_values.dart';
 
 class UserRepo {
   UserDao userDao;
@@ -29,7 +32,7 @@ class UserRepo {
     u.AllowHistory = result.UserRights.AllowHistory;
     u.AllowZeroCheck = result.UserRights.AllowZeroCheck;
     u.AllowFreeZeroCheck = result.UserRights.AllowFreeZeroCheck;
-
+    u.IsDarkTheme = false;
     u.FranchiseId = result.FranchiseId;
     u.PersonId = result.PersonId;
     u.UserName = result.PersonId.toString();
@@ -37,12 +40,13 @@ class UserRepo {
     u.ExpirationDateAsString = result.ExpirationDateAsString;
     u.TokenIsValid = result.TokenIsValid;
     u.Password = result.PersonId.toString();
-
+    DBValues.instance.setUserEntity(u);
     await insertUser(u);
     return u;
   }
 
   insertUser(UserEntity entity) async {
+    await userDao.deleteUser();
     await userDao.insertUserEntity(entity);
   }
 
@@ -53,6 +57,8 @@ class UserRepo {
       List<UserEntity> result = await userDao.findUser();
       if (result != null) {
         if (result.isNotEmpty) {
+          DBValues.instance.setUserEntity(result[0]);
+          ColorResources.instance.setMode(DBValues.instance.getUserEntity().IsDarkTheme);
           if (result[0].TokenIsValid) {
             return true;
           } else {
@@ -71,5 +77,6 @@ class UserRepo {
 
   deleteUser() async {
     await userDao.deleteUser();
+    DBValues.instance.setUserEntity(UserEntity.fromEntity());
   }
 }

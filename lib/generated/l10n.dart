@@ -907,10 +907,10 @@ class S {
     );
   }
 
-  /// `Did you know that ... As contradictory as it may seem, but movement is a very good therapy for severe, persistent fatigue? With this complaint you will generally find \n increased combustion at rest. \nSimply put: with movement you \n adjust the level of exertion to \nthe already existing increased combustion \n. \n`
+  /// `Did you know that ...\nAs contradictory as it may seem,\nbut movement is a very good therapy\nfor severe, persistent\nfatigue? With this complaint you\nwill generally find \n increased combustion at rest.\nSimply put: with movement you\nadjust the level of exertion to \nthe already existing increased \ncombustion \n.\n`
   String get waitingRoomPopupDesc {
     return Intl.message(
-      'Did you know that ... As contradictory as it may seem, but movement is a very good therapy for severe, persistent fatigue? With this complaint you will generally find \n increased combustion at rest. \nSimply put: with movement you \n adjust the level of exertion to \nthe already existing increased combustion \n. \n',
+      'Did you know that ...\nAs contradictory as it may seem,\nbut movement is a very good therapy\nfor severe, persistent\nfatigue? With this complaint you\nwill generally find \n increased combustion at rest.\nSimply put: with movement you\nadjust the level of exertion to \nthe already existing increased \ncombustion \n.\n',
       name: 'waitingRoomPopupDesc',
       desc: '',
       args: [],

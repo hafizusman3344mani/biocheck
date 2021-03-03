@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:biocheck/common/ui_widgets/appbar.dart';
 import 'package:biocheck/common/ui_widgets/bottom_bar_item.dart';
 import 'package:biocheck/common/ui_widgets/common_bottom_bar.dart';
@@ -17,7 +16,6 @@ import 'package:biocheck/db/entities/connection.dart';
 import 'package:biocheck/db/repository/connection_repo.dart';
 import 'package:biocheck/generated/l10n.dart';
 import 'package:biocheck/screens/dashboard/dashboard2.dart';
-import 'package:biocheck/screens/dashboard/select_belt_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';

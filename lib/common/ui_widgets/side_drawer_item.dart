@@ -15,8 +15,8 @@ class DrawerItem extends StatelessWidget {
       onTap:onTap,
       child: Padding(
         padding: EdgeInsets.all(10.0),
-        child: Textview(title, 30.0, FontWeight.normal,
-            AppColors.drawerItemTextColor, TextAlign.end),
+        child: Textview(title, 28.0, FontWeight.normal,
+            AppColors.textColorMode, TextAlign.end),
       ),
     );
   }

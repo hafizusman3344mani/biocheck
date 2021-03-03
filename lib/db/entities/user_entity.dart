@@ -19,6 +19,7 @@ class UserEntity {
   String Token;
   String ExpirationDateAsString;
   bool TokenIsValid;
+  bool IsDarkTheme;
 
   UserEntity(
       this.id,
@@ -36,7 +37,8 @@ class UserEntity {
       this.AllowFreeTraining,
       this.Token,
       this.ExpirationDateAsString,
-      this.TokenIsValid);
+      this.TokenIsValid,
+      this.IsDarkTheme);
 
   UserEntity.fromEntity();
 }

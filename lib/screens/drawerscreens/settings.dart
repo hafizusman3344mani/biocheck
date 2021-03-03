@@ -7,6 +7,9 @@ import 'package:biocheck/common/utils/global_resources.dart';
 import 'package:biocheck/common/utils/theme_color_mode.dart';
 import 'package:biocheck/common/utils/values.dart';
 import 'package:biocheck/common/utils/widget_attributes.dart';
+import 'package:biocheck/db/db_values.dart';
+import 'package:biocheck/db/entities/user_entity.dart';
+import 'package:biocheck/db/repository/user_repo.dart';
 import 'package:biocheck/generated/l10n.dart';
 import 'package:biocheck/screens/popups/select_language_popup.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,14 +28,26 @@ class _SettingsState extends State<Settings> {
   bool shareWithWifi = false;
   bool darkMode = false;
   bool focusMode = false;
+  UserEntity entity;
 
+
+
+@override
+  void initState() {
+    // TODO: implement initState
+  entity = DBValues.instance.getUserEntity();
+  darkMode = entity.IsDarkTheme;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize:
-            Size(AppValue.screenWidth(context), AppValue.commonAppbarHeight),
-        child: DrawerItemsAppBar(S.of(context).navigationOption1, false),
+        Size(AppValue.screenWidth(context), AppValue.commonAppbarHeight),
+        child: DrawerItemsAppBar(S
+            .of(context)
+            .navigationOption1, false),
       ),
       body: Container(
         color: Colors.white,
@@ -40,7 +55,7 @@ class _SettingsState extends State<Settings> {
           children: [
             Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+              const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
               child: Container(
                 height: AppValue.screenHeight(context) * .15,
                 child: Column(
@@ -48,7 +63,9 @@ class _SettingsState extends State<Settings> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Textview(
-                        S.of(context).settingsLastTested,
+                        S
+                            .of(context)
+                            .settingsLastTested,
                         16.0,
                         FontWeight.bold,
                         AppColors.welcomeTextColor,
@@ -60,10 +77,18 @@ class _SettingsState extends State<Settings> {
                 ),
               ),
             ),
-            _getCommonListItem(S.of(context).settingsCVP, 51.toString()),
+            _getCommonListItem(S
+                .of(context)
+                .settingsCVP, 51.toString()),
             _getCommonListItem(
-                S.of(context).settingsFollowed, S.of(context).Vitality),
-            _getCommonListItem(S.of(context).settingsAccountEnd, '12.12.2019'),
+                S
+                    .of(context)
+                    .settingsFollowed, S
+                .of(context)
+                .Vitality),
+            _getCommonListItem(S
+                .of(context)
+                .settingsAccountEnd, '12.12.2019'),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.0),
               child: Container(
@@ -73,13 +98,17 @@ class _SettingsState extends State<Settings> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Textview(
-                        S.of(context).settingsZeroCheck,
+                        S
+                            .of(context)
+                            .settingsZeroCheck,
                         16.0,
                         FontWeight.bold,
                         AppColors.welcomeTextColor,
                         TextAlign.end),
                     Textview(
-                        S.of(context).settingsZeroCheckTitle,
+                        S
+                            .of(context)
+                            .settingsZeroCheckTitle,
                         15.0,
                         FontWeight.w600,
                         AppColors.noAccTextColor,
@@ -87,7 +116,9 @@ class _SettingsState extends State<Settings> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 15.0),
                       child: Textview(
-                          S.of(context).settingsZeroCheckDescription,
+                          S
+                              .of(context)
+                              .settingsZeroCheckDescription,
                           15.0,
                           FontWeight.normal,
                           AppColors.welcomeTextColor.withOpacity(0.6),
@@ -107,13 +138,17 @@ class _SettingsState extends State<Settings> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Textview(
-                        S.of(context).settingsBreathing,
+                        S
+                            .of(context)
+                            .settingsBreathing,
                         16.0,
                         FontWeight.bold,
                         AppColors.welcomeTextColor,
                         TextAlign.end),
                     Textview(
-                        S.of(context).settingsBreathingTitle,
+                        S
+                            .of(context)
+                            .settingsBreathingTitle,
                         15.0,
                         FontWeight.w600,
                         AppColors.noAccTextColor,
@@ -122,7 +157,9 @@ class _SettingsState extends State<Settings> {
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 15.0),
                         child: Textview(
-                            S.of(context).settingsBreathingDescription,
+                            S
+                                .of(context)
+                                .settingsBreathingDescription,
                             15.0,
                             FontWeight.normal,
                             AppColors.welcomeTextColor.withOpacity(0.6),
@@ -143,7 +180,9 @@ class _SettingsState extends State<Settings> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Textview(
-                        S.of(context).settingsLanguage,
+                        S
+                            .of(context)
+                            .settingsLanguage,
                         16.0,
                         FontWeight.bold,
                         AppColors.welcomeTextColor,
@@ -159,7 +198,9 @@ class _SettingsState extends State<Settings> {
                         );
                       },
                       child: Textview(
-                          S.of(context).settingsLanguageTitleLink,
+                          S
+                              .of(context)
+                              .settingsLanguageTitleLink,
                           15.0,
                           FontWeight.w600,
                           AppColors.noAccTextColor,
@@ -169,7 +210,9 @@ class _SettingsState extends State<Settings> {
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 15.0),
                         child: Textview(
-                            S.of(context).settingsLanguageDesc,
+                            S
+                                .of(context)
+                                .settingsLanguageDesc,
                             15.0,
                             FontWeight.normal,
                             AppColors.welcomeTextColor.withOpacity(0.6),
@@ -194,19 +237,25 @@ class _SettingsState extends State<Settings> {
                       children: [
                         XlivSwitch(
                           value: darkMode,
-                          onChanged: (value) {
+                          onChanged: (value) async{
+                            darkMode = !darkMode;
+                            entity.IsDarkTheme =   !entity.IsDarkTheme;
+                            await UserRepo.instance.insertUser(entity);
+                           await DBValues.instance.setUserEntity(entity);
+                            await ColorResources.instance.setMode(!entity.IsDarkTheme);
+                            AppColors.setProp();
+                            HomePage.setTheme(context, 0);
+                          //  focusMode = !darkMode;
                             setState(() {
-                              darkMode = !darkMode;
-                              ColorResources.instance.setMode(!ColorResources.instance.getMode);
-                              AppColors.setProp();
-                              HomePage.setTheme(context, 0);
-                              focusMode = !darkMode;
-                             // HomePage.setTheme(context, Constants.DARK);
+
+                              // HomePage.setTheme(context, Constants.DARK);
                             });
                           },
                         ),
                         Textview(
-                            S.of(context).DarkModeTitle,
+                            S
+                                .of(context)
+                                .DarkModeTitle,
                             19.0,
                             FontWeight.bold,
                             AppColors.welcomeTextColor,
@@ -214,7 +263,9 @@ class _SettingsState extends State<Settings> {
                       ],
                     ),
                     Textview(
-                        S.of(context).DarkModeDesc,
+                        S
+                            .of(context)
+                            .DarkModeDesc,
                         15.0,
                         FontWeight.normal,
                         AppColors.welcomeTextColor
@@ -241,13 +292,15 @@ class _SettingsState extends State<Settings> {
                           onChanged: (value) {
                             setState(() {
                               focusMode = !focusMode;
-                              darkMode = !focusMode;
+                             // darkMode = !focusMode;
                               //HomePage.setTheme(context, Constants.FOCUS);
                             });
                           },
                         ),
                         Textview(
-                            S.of(context).FocusModeTitle,
+                            S
+                                .of(context)
+                                .FocusModeTitle,
                             19.0,
                             FontWeight.bold,
                             AppColors.welcomeTextColor,
@@ -255,7 +308,9 @@ class _SettingsState extends State<Settings> {
                       ],
                     ),
                     Textview(
-                        S.of(context).FocusModeDesc,
+                        S
+                            .of(context)
+                            .FocusModeDesc,
                         15.0,
                         FontWeight.normal,
                         AppColors.welcomeTextColor
@@ -268,7 +323,7 @@ class _SettingsState extends State<Settings> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
               child: Container(
                 height: AppValue.screenHeight(context) * .15,
                 child: Column(
@@ -287,7 +342,9 @@ class _SettingsState extends State<Settings> {
                           },
                         ),
                         Textview(
-                            S.of(context).settingsUploadToggle,
+                            S
+                                .of(context)
+                                .settingsUploadToggle,
                             16.0,
                             FontWeight.bold,
                             AppColors.welcomeTextColor,
@@ -296,7 +353,9 @@ class _SettingsState extends State<Settings> {
                     ),
                     Flexible(
                       child: Textview(
-                          S.of(context).settingsUploadToggleDescription,
+                          S
+                              .of(context)
+                              .settingsUploadToggleDescription,
                           15.0,
                           FontWeight.normal,
                           AppColors.welcomeTextColor
@@ -347,12 +406,16 @@ class _SettingsState extends State<Settings> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Textview(S.of(context).SendDebug, 16.0, FontWeight.bold,
+                    Textview(S
+                        .of(context)
+                        .SendDebug, 16.0, FontWeight.bold,
                         AppColors.welcomeTextColor, TextAlign.end),
                     GestureDetector(
                       onTap: () {},
                       child: Textview(
-                          S.of(context).SendDebugValue,
+                          S
+                              .of(context)
+                              .SendDebugValue,
                           15.0,
                           FontWeight.w600,
                           AppColors.noAccTextColor,
@@ -362,7 +425,9 @@ class _SettingsState extends State<Settings> {
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 15.0),
                         child: Textview(
-                            S.of(context).SendDebugDesc,
+                            S
+                                .of(context)
+                                .SendDebugDesc,
                             15.0,
                             FontWeight.normal,
                             AppColors.welcomeTextColor.withOpacity(0.6),

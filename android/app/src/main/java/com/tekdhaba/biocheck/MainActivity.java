@@ -80,8 +80,9 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
     int mType = 0;
     ExceptionHandler handler;
 
-    int hr;BluetoothGattCharacteristic characteristic;
-    List<Integer> rrs=new ArrayList<>();
+    int hr;
+    BluetoothGattCharacteristic characteristic;
+    List<Integer> rrs = new ArrayList<>();
 
     @Override
     public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
@@ -201,7 +202,7 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
             iniMeasurement();
 
         } else if (call.method.equals("getMeasurement")) {
-             hr = call.argument("hr");
+            hr = call.argument("hr");
             rrs = call.argument("rrs");
             result.success(getJsonData(hr, rrs));
         } else if (call.method.equals("restart")) {
@@ -219,7 +220,7 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
 
     private String getJsonData(int heartRate, List<Integer> rrs) {
 
-       // Log.i("Heart Rate = ", String.valueOf(heartRate));
+        // Log.i("Heart Rate = ", String.valueOf(heartRate));
         FL.d("\n\n\nThis is the rr received from device = " + rrs, rrs);
         FL.d("\n\n\nThis is the Heard Rate Number that I received from device = " + heartRate, heartRate);
 
@@ -231,8 +232,8 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
 
             if (!rrs.isEmpty()) {
                 for (int iI = 0; iI < heartRate; iI++) {
-                   // Log.i("Heart Rate entered= "+heartRate, String.valueOf(heartRate));
-                   // Log.i("index entered= "+iI, String.valueOf(iI));
+                    // Log.i("Heart Rate entered= "+heartRate, String.valueOf(heartRate));
+                    // Log.i("index entered= "+iI, String.valueOf(iI));
                     if (iI < rrs.size()) {
                         int iNewRrTime = rrs.get(iI);
                         int usHRTFilter = calculations.processHeartBeat(iNewRrTime); //
@@ -240,7 +241,7 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
                         if (heartRate == 0) // no rr time, send only the other data
                         {
                             calculations.processHeartBeat(iNewRrTime);
-                           // Log.i("I am 0= "+iI, String.valueOf(iI));
+                            // Log.i("I am 0= "+iI, String.valueOf(iI));
                         }
                     }
                 }
@@ -250,7 +251,7 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
 
             FL.d("\n\n\n\nThis is the Heart After Calculation from pulgin by the getHF() function= " + restMeasurement.HeartRate, restMeasurement.HeartRate);
             restMeasurement.HeartRateMS1 = calculations.getHRTFil2() * 2;
-          //  FL.d(TAG, "\n Calculation Miliseconds from getHRTFil2() * 2 is = " + (new Date().getTime()) + " is " + restMeasurement.HeartRateMS1);
+            //  FL.d(TAG, "\n Calculation Miliseconds from getHRTFil2() * 2 is = " + (new Date().getTime()) + " is " + restMeasurement.HeartRateMS1);
             restMeasurement.HeartRateAMP = calculations.getAmplitude();
 
             restMeasurement.AdemFreq = calculations.getAdem();
@@ -263,7 +264,7 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
             gpsHandler = new GpsHandler(MainActivity.this);
             gpsHandler.StartGps();
 
-           // restMeasurement.HeartRate = calculations.processHeartBeat(hrvalue) > 0 ? calculations.getHF() : 0;
+            // restMeasurement.HeartRate = calculations.processHeartBeat(hrvalue) > 0 ? calculations.getHF() : 0;
             restMeasurement.HeartRateMS1 = calculations.getHRTFil2() * 2;
             restMeasurement.HeartRateAMP = calculations.getAmplitude();
             restMeasurement.AdemFreq = calculations.getAdem();
@@ -322,8 +323,8 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
     private void iniMeasurement() {
         calculations.Initialize();
         calculations.resetCalcStartTr(false);
-        calculations.setMeasurementType(DataTypes.TRAINING_REST, DataTypes.TRAINING_SPORT_NONE);
-        calculations.setAtFromInput(false, 0);
+//        calculations.setMeasurementType(DataTypes.TRAINING_REST, DataTypes.TRAINING_SPORT_NONE);
+//        calculations.setAtFromInput(false, 0);
         Log.d(TAG, "I am initialized ");
         result.success(true);
     }
@@ -352,140 +353,9 @@ public class MainActivity extends FlutterActivity implements MethodChannel.Metho
     public void onDestroy() {
         super.onDestroy();
 
-        unregisterReceiver(BTReceiver);
         gpsHandler.StopGps();
     }
 
-
-
-    public float[] parse(BluetoothGattCharacteristic c) {
-
-
-
-        double heartRate = extractHeartRate(c);
-        double contact = extractContact(c);
-        double energy = extractEnergyExpended(c);
-        Integer[] interval = extractBeatToBeatInterval(c);
-
-        float[] result = null;
-        if (interval != null) {
-            result = new float[interval.length + 1];
-        } else {
-            result = new float[2];
-            result[1] = -1.0f;
-        }
-        result[0] = (float) heartRate;
-
-        if (interval != null) {
-            for (int i = 0; i < interval.length; i++) {
-                result[i+1] = interval[i].floatValue();
-            }
-        }
-
-        return result;
-    }
-
-    private  double extractHeartRate(
-            BluetoothGattCharacteristic characteristic) {
-
-        int flag = characteristic.getProperties();
-        Log.d(TAG, "Heart rate flag: " + flag);
-        int format = -1;
-        // Heart rate bit number format
-        if ((flag & 0x01) != 0) {
-            format = BluetoothGattCharacteristic.FORMAT_UINT16;
-            Log.d(TAG, "Heart rate format UINT16.");
-        } else {
-            format = BluetoothGattCharacteristic.FORMAT_UINT8;
-            Log.d(TAG, "Heart rate format UINT8.");
-        }
-        final int heartRate = characteristic.getIntValue(format, 1);
-        Log.d(TAG, String.format("Received heart rate: %d", heartRate));
-        return heartRate;
-    }
-
-    private  double extractContact(
-            BluetoothGattCharacteristic characteristic) {
-
-        int flag = characteristic.getProperties();
-        int format = -1;
-        // Sensor contact status
-        if ((flag & 0x02) != 0) {
-            Log.d(TAG, "Heart rate sensor contact info exists");
-            if ((flag & 0x04) != 0) {
-                Log.d(TAG, "Heart rate sensor contact is ON");
-            } else {
-                Log.d(TAG, "Heart rate sensor contact is OFF");
-            }
-        } else  {
-            Log.d(TAG, "Heart rate sensor contact info doesn't exists");
-        }
-        //final int heartRate = characteristic.getIntValue(format, 1);
-        //Log.d(TAG, String.format("Received heart rate: %d", heartRate));
-        return 0.0d;
-    }
-
-    private static double extractEnergyExpended(
-            BluetoothGattCharacteristic characteristic) {
-
-        int flag = characteristic.getProperties();
-        int format = -1;
-        // Energy calculation status
-        if ((flag & 0x08) != 0) {
-            Log.d(TAG, "Heart rate energy calculation exists.");
-        } else {
-            Log.d(TAG, "Heart rate energy calculation doesn't exists.");
-        }
-        //final int heartRate = characteristic.getIntValue(format, 1);
-        //Log.d(TAG, String.format("Received heart rate: %d", heartRate));
-        return 0.0d;
-    }
-
-    private static Integer[] extractBeatToBeatInterval(
-            BluetoothGattCharacteristic characteristic) {
-
-        int flag = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
-        int format = -1;
-        int energy = -1;
-        int offset = 1; // This depends on hear rate value format and if there is energy data
-        int rr_count = 0;
-
-        if ((flag & 0x01) != 0) {
-            format = BluetoothGattCharacteristic.FORMAT_UINT16;
-            Log.d(TAG, "Heart rate format UINT16.");
-            offset = 3;
-        } else {
-            format = BluetoothGattCharacteristic.FORMAT_UINT8;
-            Log.d(TAG, "Heart rate format UINT8.");
-            offset = 2;
-        }
-        if ((flag & 0x08) != 0) {
-            // calories present
-            energy = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset);
-            offset += 2;
-            Log.d(TAG, "Received energy: {}"+ energy);
-        }
-        if ((flag & 0x16) != 0){
-            // RR stuff.
-            Log.d(TAG, "RR stuff found at offset: "+ offset);
-            Log.d(TAG, "RR length: "+ (characteristic.getValue()).length);
-            rr_count = ((characteristic.getValue()).length - offset) / 2;
-            Log.d(TAG, "RR length: "+ (characteristic.getValue()).length);
-            Log.d(TAG, "rr_count: "+ rr_count);
-            if (rr_count > 0) {
-                Integer[] mRr_values = new Integer[rr_count];
-                for (int i = 0; i < rr_count; i++) {
-                    mRr_values[i] = characteristic.getIntValue(
-                            BluetoothGattCharacteristic.FORMAT_UINT16, offset);
-                    offset += 2;
-                    Log.d(TAG, "Received RR: " + mRr_values[i]);
-                }
-                return mRr_values;
-            }
-        }
-        Log.d(TAG, "No RR data on this update: ");
-        return null;
-    }
 
 
 

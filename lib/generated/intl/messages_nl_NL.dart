@@ -297,7 +297,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "vitality" : MessageLookupByLibrary.simpleMessage("Vitaliteit"),
     "waitingRoomPopupBtn1" : MessageLookupByLibrary.simpleMessage("Kalibreren"),
     "waitingRoomPopupBtn2" : MessageLookupByLibrary.simpleMessage("Ja, ik heb het gelezen"),
-    "waitingRoomPopupDesc" : MessageLookupByLibrary.simpleMessage("Wist je dat...\nHoe tegenstrijdig het ook lijkt, maar\nbewegen juist een hele goede therapie\nvoor ernstige, aanhoudende\nvermoeidheid is? Bij deze klacht vindt\nje over het algemeen een verhoogde\nverbranding in rust. \nSimpel gezegd: met bewegen pas je\nhet inspanningsniveau aan de reeds\nbestaande verhoogde verbranding\naan.\n"),
+    "waitingRoomPopupDesc" : MessageLookupByLibrary.simpleMessage("Wist je dat...\nHoe tegenstrijdig het ook lijkt, maar\nbewegen juist een hele goede therapie\nvoor ernstige, aanhoudende\nvermoeidheid is? Bij deze klacht vindt\nje over het algemeen een verhoogde\nverbranding in rust.\nSimpel gezegd: met bewegen pas je\nhet inspanningsniveau aan de reeds\nbestaande verhoogde verbranding\naan.\n"),
     "waitingRoomPopupTitle" : MessageLookupByLibrary.simpleMessage("De wachtkamer\n"),
     "welcomeButtonTitle" : MessageLookupByLibrary.simpleMessage("Start"),
     "welcomeDescription" : MessageLookupByLibrary.simpleMessage("BioCheck is een methode om  jouw herstelvermogen in rust te helpen verbeteren.\n\nBen jij beter in staat om te herstellen in rust, dan kan je beter mentale processen verwerken, ben je beter belastbaar, heb je meer energie en ben je minder kwetsbaar voor bijvoorbeeld \ninfecties en virussen. "),

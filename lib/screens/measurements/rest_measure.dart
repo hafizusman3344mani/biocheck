@@ -116,25 +116,7 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
 
   var svgSpeed = 2000;
 
-  //thod to generate a Test  Wave Pattern Sets
-  /// this gives us a value between +1  & -1 for sine & cosine
-  _generateTrace(Timer t) {
-    // generate our  values
-    var sv = sin((radians * pi));
-    var cv = cos((radians * pi));
 
-    // Add to the growing dataset
-    setState(() {
-      traceSine.add(sv);
-      traceCosine.add(cv);
-    });
-
-    // adjust to recyle the radian value ( as 0 = 2Pi RADS)
-    radians += 0.05;
-    if (radians >= 2.0) {
-      radians = 0.0;
-    }
-  }
 
   @override
   void initState() {
@@ -347,7 +329,9 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
         if (restMeasurement.heartBeatAmp != null) {
           if (restMeasurement.heartBeatAmp >= 0 &&
               restMeasurement.heartBeatAmp <= 9) {
-            stress = S.of(context).stress2Title;
+            stress = S
+                .of(context)
+                .stress2Title;
             stopwatchHeavy.start();
             stopwatchRelax.stop();
             stopwatchLow.stop();
@@ -372,7 +356,9 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
             }
           } else if (restMeasurement.heartBeatAmp > 9.0 &&
               restMeasurement.heartBeatAmp <= 39) {
-            stress = S.of(context).stress1Title;
+            stress = S
+                .of(context)
+                .stress1Title;
             stopwatchHeavy.stop();
             stopwatchRelax.stop();
             stopwatchLow.start();
@@ -406,7 +392,9 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
             }
           } else if (restMeasurement.heartBeatAmp > 39.0 &&
               restMeasurement.heartBeatAmp <= 69.0) {
-            stress = S.of(context).normalTitle;
+            stress = S
+                .of(context)
+                .normalTitle;
             stopwatchHeavy.stop();
             stopwatchRelax.stop();
             stopwatchLow.stop();
@@ -435,7 +423,9 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
             }
           } else {
             align = Alignment.centerRight;
-            stress = S.of(context).relaxTitle;
+            stress = S
+                .of(context)
+                .relaxTitle;
             stopwatchHeavy.stop();
             stopwatchRelax.start();
             stopwatchLow.stop();
@@ -471,21 +461,22 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
             }
           }
         }
+        if (restMeasurement.heartBeat != null) {
+          if (restMeasurement.heartBeat > 85) {
+            svgSpeed = 500;
+          } else if (restMeasurement.heartBeat > 75 &&
+              restMeasurement.heartBeat <= 85) {
+            svgSpeed = 1300;
+          } else if (restMeasurement.heartBeat > 60 &&
+              restMeasurement.heartBeat <= 75) {
+            svgSpeed = 2000;
+          } else {
+            svgSpeed = 3000;
+          }
+        }
       }
     }
 
-    if (restMeasurement.heartBeat > 85) {
-      svgSpeed = 500;
-    } else if (restMeasurement.heartBeat > 75 &&
-        restMeasurement.heartBeat <= 85) {
-      svgSpeed = 1300;
-    } else if (restMeasurement.heartBeat > 60 &&
-        restMeasurement.heartBeat <= 75) {
-      svgSpeed = 2000;
-    }else
-      {
-        svgSpeed = 3000;
-      }
 
     return Container(
       child: Column(
@@ -945,7 +936,7 @@ class _RestMeasureCalculationState extends State<RestMeasureent>
     return CountdownFormatted(
       duration: duration,
       onFinish: () {
-        // completeMeasurement();
+         completeMeasurement();
       },
       builder: (BuildContext ctx, String remaining) {
         //  print(remaining);

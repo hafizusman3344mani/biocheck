@@ -34,13 +34,13 @@ class _BeltConfigurationState extends State<BeltConfiguration> {
   var connectionController = Get.find<ConnectionController>();
   @override
   void initState() {
-    // Timer(Duration(seconds: 8), () {
-    //   Navigator.pushReplacement(context, RoutePage(
-    //     builder: (context) {
-    //       return BeltConfigurationSuccess();
-    //     },
-    //   ));
-    // });
+    Timer(Duration(seconds: 8), () {
+      Navigator.pushReplacement(context, RoutePage(
+        builder: (context) {
+          return BeltConfigurationSuccess();
+        },
+      ));
+    });
     super.initState();
   }
 
@@ -165,7 +165,7 @@ class _BeltConfigurationState extends State<BeltConfiguration> {
                             : "",
                         14.0,
                         FontWeight.bold,
-                        AppColors.noAccTextColor,
+                        AppColors.noAccTextColorMode,
                         TextAlign.end),
                   ),
                 ),

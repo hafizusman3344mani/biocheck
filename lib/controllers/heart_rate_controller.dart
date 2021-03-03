@@ -125,17 +125,16 @@ class HRController extends GetxController {
   }
 
   startSyncing() async {
-
     stream = characteristic.value;
-    sub = stream.listen((event) async {
+    sub = stream.listen((event) {
       // var results = await .device.readCharacteristic(characteristic);
       // print("${results.toList()}");
       parseHr(event);
 
-      if(!result) {
+      if (!result) {
         result = true;
         if (HeartRate > 0) {
-          await getMeasurement();
+          getMeasurement();
           update();
         }
         result = false;
@@ -144,7 +143,6 @@ class HRController extends GetxController {
   }
 
   connectAndPlay() async {
-
     await currentDevice.disconnect();
     await currentDevice.connect();
     List<BluetoothService> services = await currentDevice.discoverServices();
@@ -165,68 +163,68 @@ class HRController extends GetxController {
             element.uuid.toString().toUpperCase().substring(4, 8) == '2A37')
         .toList()
         .first;
-
-    startMeasuring = 1;
     characteristic.setNotifyValue(true);
+    startMeasuring = 1;
+
     await ConnectivityPolar.initCalc;
     await startSyncing();
   }
 
   int parseHr(List<int> value) {
-if(value.isNotEmpty) {
-  List<int> valueSorted = [];
-  valueSorted.insert(0, value[0]);
-  valueSorted.insert(1, value[1]);
-  for (var i = 0; i < (value.length - 3); i++) {
-    valueSorted.insert(i + 2, value[i + 3]);
-    valueSorted.insert(i + 3, value[i + 2]);
-  }
+    if (value.isNotEmpty) {
+      List<int> valueSorted = [];
+      valueSorted.insert(0, value[0]);
+      valueSorted.insert(1, value[1]);
+      for (var i = 0; i < (value.length - 3); i++) {
+        valueSorted.insert(i + 2, value[i + 3]);
+        valueSorted.insert(i + 3, value[i + 2]);
+      }
 
-  // int offset= 1;
-  // int rr_count =0;
-  //  rr_count = ((value.length - offset) / 2) as int;
-  // for (int i = 0; i < rr_count; i++){
-  //   hrsss[i] = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset);
-  //   offset += 2;
-  //  // Logger.trace("Received RR: {}", mRr_values[i]);
-  // }
+      // int offset= 1;
+      // int rr_count =0;
+      //  rr_count = ((value.length - offset) / 2) as int;
+      // for (int i = 0; i < rr_count; i++){
+      //   hrsss[i] = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset);
+      //   offset += 2;
+      //  // Logger.trace("Received RR: {}", mRr_values[i]);
+      // }
 // Get flags directly from list
-  var flags = valueSorted[0];
+      var flags = valueSorted[0];
 
 // Get the ByteBuffer view of the data to recode it later
-  var buffer = new Uint8List.fromList(valueSorted)
-      .buffer; // Buffer bytes from list
+      var buffer =
+          new Uint8List.fromList(valueSorted).buffer; // Buffer bytes from list
 
-  if (flags == 0) {
-    // HR
-    var hrBuffer = new ByteData.view(buffer, 1, 1); // Get second byte
-    var hr = hrBuffer.getUint8(0);
-    HeartRate = hr;// Recode as UINT8
-    print(hr);
-  }
+      if (flags == 0) {
+        // HR
+        var hrBuffer = new ByteData.view(buffer, 1, 1); // Get second byte
+        var hr = hrBuffer.getUint8(0);
+        HeartRate = hr; // Recode as UINT8
+        print(hr);
+      }
 
-  if (flags == 16) {
-    // HR
-    var hrBuffer = new ByteData.view(buffer, 1, 1); // Get second byte
-    var hr = hrBuffer.getUint8(0); // Recode as UINT8
-    HeartRate = hr;
-    // RR (more than one can be retrieved in the list)
-    int offset = 2;
-    var nRr = (valueSorted.length - offset) /
-        2; // Remove flags and hr from byte count; then split in two since RR is coded as UINT16
-    List<int> rrs = [];
-    for (var i = 0; i < nRr; i++) {
-      var rrBuffer = new ByteData.view(buffer, 2 + (i * 2),
-          2); // Get pairs of bytes counting since the 3rd byte
-      var rr = rrBuffer.getUint16(0);
-     // offset += 2;// Recode as UINT16
-      rrs.insert(i, rr);
+      if (flags == 16) {
+        // HR
+        var hrBuffer = new ByteData.view(buffer, 1, 1); // Get second byte
+        var hr = hrBuffer.getUint8(0); // Recode as UINT8
+        HeartRate = hr;
+        // RR (more than one can be retrieved in the list)
+        int offset = 2;
+        var nRr = (valueSorted.length - offset) /
+            2; // Remove flags and hr from byte count; then split in two since RR is coded as UINT16
+        List<int> rrs = [];
+        for (var i = 0; i < nRr; i++) {
+          var rrBuffer = new ByteData.view(buffer, 2 + (i * 2),
+              2); // Get pairs of bytes counting since the 3rd byte
+          var rr = rrBuffer.getUint16(0);
+          // offset += 2;// Recode as UINT16
+          rrs.insert(i, rr);
+        }
+
+        this.rrs = rrs;
+        print(this.rrs);
+      }
     }
-
-    this.rrs = rrs;
-    print(this.rrs);
-  }
-}
     return HeartRate;
   }
 
@@ -248,7 +246,7 @@ if(value.isNotEmpty) {
 
   getMeasurement() async {
     if (rrs.isNotEmpty) {
-      snapshot = await ConnectivityPolar.getMeasurements( HeartRate,rrs);
+      snapshot = await ConnectivityPolar.getMeasurements(HeartRate, rrs);
     }
   }
 }

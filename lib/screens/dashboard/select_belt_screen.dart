@@ -259,7 +259,7 @@ class _SelectBeltState extends State<SelectBelt> {
                 : 'No name',
             14.0,
             FontWeight.normal,
-            AppColors.noAccTextColor,
+            AppColors.noAccTextColorMode,
             TextAlign.right),
       ),
     );

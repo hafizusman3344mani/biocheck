@@ -1,8 +1,7 @@
+
 import 'dart:async';
 
 import 'package:biocheck/common/ui_widgets/appbar.dart';
-import 'package:biocheck/common/ui_widgets/custom_button_with_gradient.dart';
-import 'package:biocheck/common/ui_widgets/faded_widget.dart';
 import 'package:biocheck/common/ui_widgets/get_icon.dart';
 import 'package:biocheck/common/ui_widgets/textview.dart';
 import 'package:biocheck/common/ui_widgets/textview2.dart';
@@ -10,17 +9,13 @@ import 'package:biocheck/common/utils/colors.dart';
 import 'package:biocheck/common/utils/global_resources.dart';
 import 'package:biocheck/common/utils/routepage.dart';
 import 'package:biocheck/common/utils/values.dart';
-import 'package:biocheck/common/utils/widget_attributes.dart';
 import 'package:biocheck/controllers/infrastructure/common/connection_controller.dart';
-import 'package:biocheck/db/entities/connection.dart';
 import 'package:biocheck/generated/l10n.dart';
-import 'package:biocheck/screens/dashboard/dashboard2.dart';
-import 'package:biocheck/screens/popups/common_popup.dart';
-import 'package:biocheck/screens/popups/set_band_name.dart';
-import 'package:biocheck/controllers/infrastructure/plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+
+import 'dashboard2.dart';
 
 class BeltConfigurationSuccess extends StatefulWidget {
   @override
@@ -51,6 +46,7 @@ class _BeltConfigurationState extends State<BeltConfigurationSuccess> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bodyColorMode,
       resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize:
@@ -72,7 +68,7 @@ class _BeltConfigurationState extends State<BeltConfigurationSuccess> {
                     S.of(context).dashboard1Title1,
                     13.0,
                     FontWeight.w300,
-                    Colors.white12,
+                    AppColors.bodyColorMode,
                     TextAlign.right,
                   ),
                 ),
@@ -80,7 +76,7 @@ class _BeltConfigurationState extends State<BeltConfigurationSuccess> {
                   padding: const EdgeInsets.symmetric(vertical: 0.0),
                   child: Textview3(
                     title: S.of(context).dashboard1TitleStep4,
-                    color: AppColors.dashboardTextColor,
+                    color: AppColors.textColorMode,
                     textAlign: TextAlign.right,
                     fontSize: AppValue.screenCommonTitleSize,
                     fontWeight: FontWeight.w300,
@@ -111,7 +107,7 @@ class _BeltConfigurationState extends State<BeltConfigurationSuccess> {
                   Padding(
                     padding: EdgeInsets.only(right: 40.0),
                     child: Textview('Success', 14.0, FontWeight.w600,
-                        AppColors.dashboardTextColor, TextAlign.end),
+                        AppColors.textColorMode, TextAlign.end),
                   ),
                   GetIcon(
                     path: GlobalResources.ic_check,
@@ -135,7 +131,7 @@ class _BeltConfigurationState extends State<BeltConfigurationSuccess> {
                   S.of(context).dashboard1Title3,
                   10.0,
                   FontWeight.w300,
-                  Colors.white12,
+                  AppColors.bodyColorMode,
                   TextAlign.right,
                 ),
               ),
@@ -156,7 +152,7 @@ class _BeltConfigurationState extends State<BeltConfigurationSuccess> {
                       : "",
                   14.0,
                   FontWeight.bold,
-                  AppColors.noAccTextColor,
+                  AppColors.noAccTextColorMode,
                   TextAlign.end),
             ),
           ),

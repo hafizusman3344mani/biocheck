@@ -1,4 +1,5 @@
 import 'package:biocheck/common/utils/theme_color_mode.dart';
+import 'package:biocheck/db/db_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -123,38 +124,38 @@ class AppColors {
   //Theme colors
 
 
-  static var textColorMode = ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff32394B);
+  static var textColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff32394B);
 
-  static var welcomeTextColorMode = ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff32394B);
-  static var indicatorColorMode =  ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff32394B);
-  static var acheivementsTextColorMode = ColorResources.instance.getMode?Color(0xFFFFFFFF) :Color(0xff414141);
-  static var noAccTextColorMode =  ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff1C05FF);
+  static var welcomeTextColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff32394B);
+  static var indicatorColorMode =  DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff32394B);
+  static var acheivementsTextColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF) :Color(0xff414141);
+  static var noAccTextColorMode =  DBValues.instance.getUserEntity().IsDarkTheme?Colors.blueAccent:Color(0xff1C05FF);
 
 
-  static var featureTextColorMode =ColorResources.instance.getMode?Colors.white: Color(0xff8890A6);
-  static var endurance2Mode = ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff0E065D);
-  static var endurance2aMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xff469167);
-  static var commonTextColorCronicMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xff414141);
-  static  var calenderDateTextColorMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xff32394B);
-  static var bodyColorMode = ColorResources.instance.getMode?Color(0xFF32394B):Color(0xffF7F7F7);
-  static var themeRedColorMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xffB11918);
+  static var featureTextColorMode =DBValues.instance.getUserEntity().IsDarkTheme?Colors.white: Color(0xff8890A6);
+  static var endurance2Mode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff0E065D);
+  static var endurance2aMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xff469167);
+  static var commonTextColorCronicMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xff414141);
+  static  var calenderDateTextColorMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xff32394B);
+  static var bodyColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFF32394B):Color(0xffF7F7F7);
+  static var themeRedColorMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xffB11918);
 
   static void setProp()
   {
-     textColorMode = ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff32394B);
+     textColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff32394B);
 
-      welcomeTextColorMode = ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff32394B);
-    indicatorColorMode =  ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff32394B);
-   acheivementsTextColorMode = ColorResources.instance.getMode?Color(0xFFFFFFFF) :Color(0xff414141);
-    noAccTextColorMode =  ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff1C05FF);
+      welcomeTextColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff32394B);
+    indicatorColorMode =  DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff32394B);
+   acheivementsTextColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF) :Color(0xff414141);
+    noAccTextColorMode =  DBValues.instance.getUserEntity().IsDarkTheme?Colors.blueAccent:Color(0xff1C05FF);
 
 
-    featureTextColorMode =ColorResources.instance.getMode?Colors.white: Color(0xff8890A6);
-    endurance2Mode = ColorResources.instance.getMode?Color(0xFFFFFFFF):Color(0xff0E065D);
-   endurance2aMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xff469167);
-    commonTextColorCronicMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xff414141);
-    calenderDateTextColorMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xff32394B);
-    bodyColorMode = ColorResources.instance.getMode?Color(0xFF32394B):Color(0xffF7F7F7);
-    themeRedColorMode =ColorResources.instance.getMode?Color(0xFFFFFFFF): Color(0xffB11918);
+    featureTextColorMode =DBValues.instance.getUserEntity().IsDarkTheme?Colors.white: Color(0xff8890A6);
+    endurance2Mode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF):Color(0xff0E065D);
+   endurance2aMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xff469167);
+    commonTextColorCronicMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xff414141);
+    calenderDateTextColorMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xff32394B);
+    bodyColorMode = DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFF32394B):Color(0xffF7F7F7);
+    themeRedColorMode =DBValues.instance.getUserEntity().IsDarkTheme?Color(0xFFFFFFFF): Color(0xffB11918);
   }
 }

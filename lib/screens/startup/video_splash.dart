@@ -128,6 +128,7 @@ class _SplashState extends State<VideoSplash> {
         }
         if(hrController.currentDevice!=null)
         {
+         await hrController.currentDevice.disconnect();
           Navigator.of(context).pushReplacement(
             RoutePage(
               builder: (context) => DashboardMain(),

@@ -2,6 +2,7 @@ import 'package:biocheck/common/ui_widgets/custom_innershadow_widget.dart';
 import 'package:biocheck/common/utils/colors.dart';
 import 'package:biocheck/common/utils/theme_color_mode.dart';
 import 'package:biocheck/common/utils/values.dart';
+import 'package:biocheck/db/db_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -25,7 +26,9 @@ class Feature extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         child: GestureDetector(
           onTap: onTap,
-          child: ColorResources.instance.getMode
+          child: DBValues.instance.getUserEntity()!=null?
+
+            DBValues.instance.getUserEntity().IsDarkTheme
               ? ShadowedWidget2(
                   height: 134.5,
                   child: Container(
@@ -61,7 +64,24 @@ class Feature extends StatelessWidget {
                         fontSize: 21,
                         title: title),
                   ),
-                ),
+                ):ShadowedWidget(
+            height: 134.5,
+            child: Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.only(right: 15.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: AppColors.bodyColorMode,
+              ),
+              child: Textview2(
+                  color: AppColors.featureTextColorMode,
+                  lineHeight: 1.7,
+                  textAlign: TextAlign.right,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 21,
+                  title: title),
+            ),
+          ),
         ),
       );
     } else {

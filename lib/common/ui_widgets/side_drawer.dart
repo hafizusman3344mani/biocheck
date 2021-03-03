@@ -56,7 +56,7 @@ class _SideDrawerState extends State<SideDrawer> {
         curve: Curves.easeIn,
         duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.bodyColorMode,
             borderRadius: BorderRadius.all(Radius.circular(5.0))),
 
         width: AppValue.screenWidth(context),
@@ -75,7 +75,7 @@ class _SideDrawerState extends State<SideDrawer> {
                   },
                   child: GetIcon(
                     path: GlobalResources.ic_close,
-                    color: AppColors.welcomeTextColor.withOpacity(0.7),
+                    color: AppColors.textColorMode.withOpacity(0.7),
                     height: 24.0,
                     width: 24.0,
                   ),
@@ -97,9 +97,9 @@ class _SideDrawerState extends State<SideDrawer> {
                         },
                         child: Textview(
                             S.of(context).navigationOption1,
-                            30.0,
+                            28.0,
                             FontWeight.normal,
-                            AppColors.drawerItemTextColor,
+                            AppColors.textColorMode,
                             TextAlign.end),
                       ),
                     ),
@@ -114,9 +114,9 @@ class _SideDrawerState extends State<SideDrawer> {
                         },
                         child: Textview(
                             S.of(context).navigationOption2,
-                            30.0,
+                            28.0,
                             FontWeight.normal,
-                            AppColors.drawerItemTextColor,
+                            AppColors.textColorMode,
                             TextAlign.end),
                       ),
                     ),
@@ -126,9 +126,9 @@ class _SideDrawerState extends State<SideDrawer> {
                         padding: EdgeInsets.all(10.0),
                         child: Textview(
                             S.of(context).navigationOption3,
-                            30.0,
+                            28.0,
                             FontWeight.normal,
-                            AppColors.noAccTextColor,
+                            AppColors.noAccTextColorMode,
                             TextAlign.end),
                       ),
                     ),
@@ -143,9 +143,9 @@ class _SideDrawerState extends State<SideDrawer> {
                         },
                         child: Textview(
                             S.of(context).navigationOption4,
-                            30.0,
+                            28.0,
                             FontWeight.normal,
-                            AppColors.drawerItemTextColor,
+                            AppColors.textColorMode,
                             TextAlign.end),
                       ),
                     ),
@@ -160,9 +160,9 @@ class _SideDrawerState extends State<SideDrawer> {
                         },
                         child: Textview(
                             S.of(context).navigationOption5,
-                            30.0,
+                            28.0,
                             FontWeight.normal,
-                            AppColors.drawerItemTextColor,
+                            AppColors.textColorMode,
                             TextAlign.end),
                       ),
                     ),

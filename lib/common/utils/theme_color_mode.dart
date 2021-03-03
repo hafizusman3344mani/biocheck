@@ -5,7 +5,7 @@ class ColorResources {
 
   static final ColorResources _instance = ColorResources._privateConstructor();
 
-  static bool _isDarkMode = false;
+   bool _isDarkMode = false;
 
   bool get getMode => _isDarkMode;
 
@@ -13,6 +13,5 @@ class ColorResources {
 
   void setMode(bool val) {
     _isDarkMode = val;
-    new AppColors();
   }
 }

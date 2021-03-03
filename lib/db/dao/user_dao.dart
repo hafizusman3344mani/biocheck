@@ -12,6 +12,7 @@ abstract class UserDao {
   @insert
   Future<void> insertUserEntity(UserEntity user);
 
+
   @Query(DBQueries.deleteUser)
   Future<void> deleteUser();
 }

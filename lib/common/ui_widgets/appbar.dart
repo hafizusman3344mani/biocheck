@@ -24,6 +24,7 @@ class CustomAppBar extends StatelessWidget {
         withDrawer ?Padding(
           padding: EdgeInsets.only(right: 20.0),
           child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: ()
             {
               _scaffoldKey.currentState.openEndDrawer();

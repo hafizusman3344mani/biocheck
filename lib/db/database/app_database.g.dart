@@ -84,7 +84,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `UserEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `PersonId` INTEGER, `UserName` TEXT, `Password` TEXT, `FranchiseId` INTEGER, `CanViewPhysicalStatusInfo` INTEGER, `AllowMobileAccess` INTEGER, `AllowWebAccess` INTEGER, `AllowHistory` INTEGER, `AllowZeroCheck` INTEGER, `AllowFreeZeroCheck` INTEGER, `AllowCvp` INTEGER, `AllowFreeTraining` INTEGER, `Token` TEXT, `ExpirationDateAsString` TEXT, `TokenIsValid` INTEGER)');
+            'CREATE TABLE IF NOT EXISTS `UserEntity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `PersonId` INTEGER, `UserName` TEXT, `Password` TEXT, `FranchiseId` INTEGER, `CanViewPhysicalStatusInfo` INTEGER, `AllowMobileAccess` INTEGER, `AllowWebAccess` INTEGER, `AllowHistory` INTEGER, `AllowZeroCheck` INTEGER, `AllowFreeZeroCheck` INTEGER, `AllowCvp` INTEGER, `AllowFreeTraining` INTEGER, `Token` TEXT, `ExpirationDateAsString` TEXT, `TokenIsValid` INTEGER,`IsDarkTheme` INTEGER)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Connection` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `isConnected` INTEGER, `ConnectionId` TEXT, `ConnectedDeviceName` TEXT, `ConnectedUserDeviceName` TEXT, `ConnetionSdk` INTEGER)');
         await database.execute(
@@ -154,7 +154,10 @@ class _$UserDao extends UserDao {
                   'ExpirationDateAsString': item.ExpirationDateAsString,
                   'TokenIsValid': item.TokenIsValid == null
                       ? null
-                      : (item.TokenIsValid ? 1 : 0)
+                      : (item.TokenIsValid ? 1 : 0),
+                  'IsDarkTheme': item.IsDarkTheme == null
+                      ? null
+                      : (item.IsDarkTheme ? 1 : 0),
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -200,7 +203,10 @@ class _$UserDao extends UserDao {
             row['ExpirationDateAsString'] as String,
             row['TokenIsValid'] == null
                 ? null
-                : (row['TokenIsValid'] as int) != 0));
+                : (row['TokenIsValid'] as int) != 0,
+            row['IsDarkTheme'] == null
+                ? null
+                : (row['IsDarkTheme'] as int) != 0));
   }
 
   @override
